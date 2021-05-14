@@ -1,0 +1,60 @@
+[package]
+name = "xrbevy"
+version = "0.1.0"
+authors = ["Mika Vatanen <blaind@blaind.net>"]
+edition = "2018"
+
+[features]
+default = ["use-openxr"]
+use-openxr = ["bevy/use-openxr"]
+
+[dependencies.bevy]
+path = "./repos/bevy"
+features = [
+  "bevy_dynamic_plugin",
+  "bevy_gilrs",
+  "bevy_gltf",
+  "bevy_wgpu",
+  "bevy_winit",
+  "render",
+  "png",
+  "hdr",
+  "x11"
+]
+default-features = false
+
+[dev-dependencies]
+log = "0.4.14"
+env_logger = "0.8.2"
+
+[target.'cfg(target_os = "android")'.dependencies]
+ndk-glue = "0.2.1"
+
+[package.metadata.android]
+apk_label = "Bevy OpenXR wgpu"
+build_targets = ["aarch64-linux-android"]
+min_sdk_version = 16
+target_sdk_version = 29
+assets = "assets"
+libs = "libs"
+
+[[package.metadata.android.permission]]
+name = "com.oculus.permission.HAND_TRACKING"
+
+[[package.metadata.android.feature]]
+name = "oculus.software.handtracking"
+required = false
+
+[profile.release]
+opt-level = 3
+#lto = true
+
+[[example]]
+name = "xr_apk_scene"
+crate-type = ["cdylib"]
+
+[[example]]
+name = "xr_pc_scene"
+
+[[example]]
+name = "non_xr_scene"

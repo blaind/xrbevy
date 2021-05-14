@@ -1,0 +1,61 @@
+diff --git a/Cargo.toml b/Cargo.toml
+index ef8b43f..64c7d9c 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -26,21 +26,18 @@ use-openxr = ["wgc/use-openxr", "openxr"]
+ 
+ [target.'cfg(not(target_arch = "wasm32"))'.dependencies.wgc]
+ package = "wgpu-core"
+-git = "https://github.com/gfx-rs/wgpu"
+-rev = "7c7501cab72fd01b14def06b9d9bc63a8dd44b45"
++path = "../wgpu/wgpu-core"
+ features = ["raw-window-handle"]
+ 
+ [target.'cfg(target_arch = "wasm32")'.dependencies.wgc]
+ package = "wgpu-core"
+-git = "https://github.com/gfx-rs/wgpu"
+-rev = "7c7501cab72fd01b14def06b9d9bc63a8dd44b45"
++path = "../wgpu/wgpu-core"
+ features = ["raw-window-handle"]
+ optional = true
+ 
+ [dependencies.wgt]
+ package = "wgpu-types"
+-git = "https://github.com/gfx-rs/wgpu"
+-rev = "7c7501cab72fd01b14def06b9d9bc63a8dd44b45"
++path = "../wgpu/wgpu-types"
+ 
+ [dependencies]
+ arrayvec = "0.5"
+@@ -49,7 +46,7 @@ raw-window-handle = "0.3"
+ smallvec = "1"
+ tracing = { version = "0.1", default-features = false, features = ["std"] }
+ serde = { version = "1", features = ["derive"], optional = true }
+-openxr = { version = "0.14", features = ["loaded"], default-features = false, optional = true }
++openxr = { path = "../openxrs/openxr", features = ["loaded"], default-features = false, optional = true }
+ 
+ [dev-dependencies]
+ bytemuck = { version = "1.4", features = ["derive"] }
+@@ -78,8 +75,8 @@ path="examples/hello-compute/main.rs"
+ test = true
+ 
+ [patch."https://github.com/gfx-rs/wgpu"]
+-#wgpu-types = { version = "0.6", path = "../wgpu/wgpu-types" }
+-#wgpu-core = { version = "0.6", path = "../wgpu/wgpu-core" }
++wgpu-types = { version = "0.7", path = "../wgpu/wgpu-types" }
++wgpu-core = { version = "0.7", path = "../wgpu/wgpu-core" }
+ 
+ [patch."https://github.com/gfx-rs/subscriber"]
+ #wgpu-subscriber = { version = "0.1", path = "../subscriber" }
+@@ -94,9 +91,9 @@ test = true
+ #gpu-alloc = { path = "../gpu-alloc/gpu-alloc" }
+ 
+ [patch."https://github.com/gfx-rs/gfx"]
+-#gfx-hal = { path = "../gfx/src/hal" }
++gfx-hal = { path = "../gfx/src/hal" }
+ #gfx-backend-empty = { path = "../gfx/src/backend/empty" }
+-#gfx-backend-vulkan = { path = "../gfx/src/backend/vulkan" }
++gfx-backend-vulkan = { path = "../gfx/src/backend/vulkan" }
+ #gfx-backend-gl = { path = "../gfx/src/backend/gl" }
+ #gfx-backend-dx12 = { path = "../gfx/src/backend/dx12" }
+ #gfx-backend-dx11 = { path = "../gfx/src/backend/dx11" }

@@ -2,4 +2,3 @@
 *.sw*
 /repos
 Cargo.lock
-libs

@@ -44,7 +44,7 @@ fn setup(
     commands.spawn_bundle(PbrBundle {
         mesh: meshes.add(Mesh::from(shape::Cube { size: 0.5 })),
         material: small_uv_material,
-        transform: Transform::from_xyz(1.5, 1., 0.),
+        transform: Transform::from_xyz(0., 1., -1.5),
         ..Default::default()
     });
 

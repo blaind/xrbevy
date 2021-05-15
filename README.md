@@ -6,7 +6,7 @@ Proof-of-concept of getting [OpenXR](https://www.khronos.org/openxr/) rendering 
 
 (hand interaction with boxes missing from current commit)
 
-Tracked pull requests at upstream:
+For technical details, see [docs/architecture.md](docs/architecture.md). Tracked pull requests at upstream:
 
 * bevy: https://github.com/bevyengine/bevy/pull/2166
 * wgpu-rs: https://github.com/gfx-rs/wgpu-rs/pull/910

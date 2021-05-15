@@ -1,10 +1,19 @@
 # Introduction
 
-This is a proof-of-concept of getting [OpenXR](https://www.khronos.org/openxr/) rendering working in [Bevy](https://github.com/bevyengine/bevy) game engine. Note that at the time of writing (May 14th) this is based on the state where the dependencies were at pre-February.
+Proof-of-concept of getting [OpenXR](https://www.khronos.org/openxr/) rendering support for [Bevy](https://github.com/bevyengine/bevy) game engine using [gfx-rs](https://github.com/gfx-rs/gfx/) abstractions.
 
 ![Example](docs/screenshot.webp)
 
 (hand interaction with boxes missing from current commit)
+
+Tracked pull requests at upstream:
+
+* bevy: https://github.com/bevyengine/bevy/pull/2166
+* wgpu-rs: https://github.com/gfx-rs/wgpu-rs/pull/910
+* wgpu: https://github.com/gfx-rs/wgpu/pull/1387
+* gfx-rs: https://github.com/gfx-rs/gfx/pull/3761
+* bevy_rapier: https://github.com/dimforge/bevy_rapier/pull/69 (only required for kinematics in the example)
+* android-ndk-rs: https://github.com/rust-windowing/android-ndk-rs/pull/138 (needed for bundling .so for Oculus Quest 2)
 
 # Getting started
 
@@ -150,35 +159,12 @@ or
 
 # Patched dependencies
 
-## bevy
-
-* branched from `f8292ccf7ef99b254e936329de9dd7e079760e55` (Feb 12)
-* **NOTE! Some local Cargo.toml patching is required in order for successful compilation**
-* large amount of changes
-* compare: https://github.com/bevyengine/bevy/compare/main...blaind:bevy_openxr
+See pull requests above. Also:
 
 ## openxrs
 
 * branched from `63e80e30b0d37a4203fc103978cd146edb89f2dc` (Dec 17), because the vulkan2 change is currently incompatible
 * added a few changes in order to handle Oculus Quest 2 case
-
-## gfx
-
-* branched from `6f349fca1581b5985693262327ed8a77f9c60f11` (Feb 1), but can be updated to latest (large amount of commits in -between)
-* **NOTE! Some local Cargo.toml patching is required in order for successful compilation**
-* compare: https://github.com/gfx-rs/gfx/compare/master...blaind:bevy_openxr
-
-## wgpu-rs
-
-* branched from `7235072f6d283340fd438b12b479c67dc093315b` (Feb 1), but can be updated to latest (large amount of commits in -between)
-* **NOTE! Some local Cargo.toml patching is required in order for successful compilation**
-* compare: https://github.com/gfx-rs/wgpu-rs/compare/master...blaind:bevy_openxr
-
-## wgpu
-
-* branched from `7c7501cab72fd01b14def06b9d9bc63a8dd44b45` (Feb 1), but can be updated to latest (large amount of commits in -between)
-* **NOTE! Some local Cargo.toml patching is required in order for successful compilation**
-* compare: https://github.com/gfx-rs/wgpu/compare/master...blaind:bevy_openxr
 
 ## android-ndk-rs
 
@@ -186,12 +172,6 @@ or
 * added a lib path search for copying .so files into APK (needed for Quest 2 openxr loader)
 * similar feature already waiting for merge at https://github.com/rust-windowing/android-ndk-rs/pull/138 - this patch can be removed after
 * compare: https://github.com/rust-windowing/android-ndk-rs/compare/master...blaind:bevy_openxr
-
-## bevy_rapier
-
-* branched from `999c81d480c50c25e743b14f11c17a86a6aed1ee` (Jan 29), but can be updated to latest
-* added kinematic rigid bodies - not really related to openxr part, but rather for interacting with items
-* compare: https://github.com/dimforge/bevy_rapier/compare/master...blaind:bevy_openxr
 
 # Related material
 

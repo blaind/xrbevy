@@ -13,33 +13,42 @@ impl Plugin for ExampleScenePlugin {
 }
 
 fn setup(
-    commands: &mut Commands,
+    mut commands: Commands,
     asset_server: Res<AssetServer>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
     let small_uv = asset_server.load("textures/uv-small.png");
     let small_uv_material = materials.add(StandardMaterial {
-        albedo_texture: Some(small_uv.clone()),
+        base_color_texture: Some(small_uv.clone()),
         unlit: false,
         ..Default::default()
     });
 
-    commands
-        .spawn(PbrBundle {
-            mesh: meshes.add(Mesh::from(shape::Plane { size: 5.0 })),
-            material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
+    commands.spawn_bundle(PbrBundle {
+        mesh: meshes.add(Mesh::from(shape::Plane { size: 5.0 })),
+        material: materials.add(Color::rgb(0.3, 0.5, 0.3).into()),
+        ..Default::default()
+    });
+
+    commands.spawn_bundle(PointLightBundle {
+        point_light: PointLight {
+            color: Color::rgb(1., 1., 1.),
             ..Default::default()
-        })
-        .spawn(LightBundle {
-            light: Light {
-                color: Color::rgb(1., 1., 1.),
-                ..Default::default()
-            },
-            transform: Transform::from_xyz(4.0, 8.0, 4.0),
-            ..Default::default()
-        })
-        .spawn(XRCameraBundle::default());
+        },
+        transform: Transform::from_xyz(4.0, 8.0, 4.0),
+        ..Default::default()
+    });
+    commands.spawn_bundle(XRCameraBundle::default());
+
+    commands.spawn_bundle(PbrBundle {
+        mesh: meshes.add(Mesh::from(shape::Cube { size: 0.5 })),
+        material: small_uv_material,
+        transform: Transform::from_xyz(1.5, 1., 0.),
+        ..Default::default()
+    });
+
+    let color_material = materials.add(Color::rgb(0.8, 0.7, 0.6).into());
 
     for y in -3..3 {
         for x in -3..3 {
@@ -48,10 +57,16 @@ fn setup(
                     continue;
                 }
 
-                commands.spawn(PbrBundle {
-                    mesh: meshes.add(Mesh::from(shape::Cube { size: 0.2 })),
-                    material: materials.add(Color::rgb(0.8, 0.7, 0.6).into()),
-                    transform: Transform::from_xyz(x as f32 * 0.5, y as f32 * 0.5, z as f32 * 0.5),
+                let spacing = 0.5;
+
+                commands.spawn_bundle(PbrBundle {
+                    mesh: meshes.add(Mesh::from(shape::Cube { size: 0.1 })),
+                    material: color_material.clone(),
+                    transform: Transform::from_xyz(
+                        x as f32 * spacing,
+                        y as f32 * spacing,
+                        z as f32 * spacing,
+                    ),
                     ..Default::default()
                 });
             }

@@ -1,3 +1,84 @@
+# Components
+
+![screenshot](screenshot0.png)
+
+```mermaid
+graph LR
+    style XRD fill:#555555,stroke:#fff,stroke-width:2px
+    style XRSC fill:#555555,stroke:#fff,stroke-width:2px
+    style OXRS fill:#555555,stroke:#fff,stroke-width:2px
+    style XRS fill:#555555,stroke:#fff,stroke-width:2px
+    style EDBH fill:#555555,stroke:#fff,stroke-width:2px
+    style XRO fill:#555555,stroke:#fff,stroke-width:2px
+    style XRHT fill:#555555,stroke:#fff,stroke-width:2px
+    style XRI2 fill:#555555,stroke:#fff,stroke-width:2px
+
+    style ScheduleRunnerSettings fill:#003300,stroke:#000,stroke-width:2px
+    style XRH fill:#003300,stroke:#000,stroke-width:2px
+    style XRI fill:#003300,stroke:#000,stroke-width:2px
+
+    style BO fill:#003355,stroke:#000,stroke-width:2px
+    style BOC fill:#003355,stroke:#000,stroke-width:2px
+
+    style s_E fill:#ff9900,stroke:#000,stroke-width:2px,color:#333
+    style s_CA fill:#ff9900,stroke:#000,stroke-width:2px,color:#333
+
+    style XRCP fill:#00ff00,stroke:#000,stroke-width:2px,color:#333
+
+    style XRP fill:#00ff00,stroke:#000,stroke-width:2px,color:#333
+
+    BO[bevy_openxr] --- BOC[bevy_openxr_core]
+
+    XRD --- XRSC[XRSwapchain]
+    XRSC --- Framebuffer
+    BOC --- XRD[XRDevice]
+    BOC --- s_E[openxr_event_system]
+    XRD --- OXRS[OpenXRStruct]
+    OXRS --- XRS[XRState]
+    OXRS --- EDBH[EventDataBufferHolder]
+    OXRS --- XRH[wgpu::OpenXRHandles]
+    OXRS --- XRI[openxr::Instance]
+    OXRS --- XRO[OpenXROptions]
+    XRSC --- XRVT[XRViewTransform]
+    XRSC --- XRHT[HandTrackers]
+    XRHT --- XRHPS[HandPoseState]
+
+    BOC --- XRCP[OpenXRCorePlugin]
+
+    BO --- XRP[OpenXRPlugin]
+
+    XRP --- XRS2[OpenXRSettings]
+    XRP --- PS[ProjectionState]
+    XRP --- ScheduleRunnerSettings
+    XRP --- s_CA[openxr_camera_system]
+    XRP --- XRI2[OpenXRInstance]
+
+
+```
+
+## bevy_openxr_core
+* struct `XRDevice`: currently mostly a wrapper around methods in the swapchain
+  * struct `XRSwapchain`: Custom swapchain, which will handle rendering to views. Has prepare, post-update methods. etc.
+    * struct `Framebuffer`: One per XR-camera (2 for headsets), contains a `wgpu::Texture` and `wgpu::TextureView`
+    * struct `XRViewTransform`: (these are not actually stored inside, but rather there's a getter) -- used for storing per-camera (eye) positions. Like `bevy::Transform`, but has a helper method `compute_matrix()` which is called from `bevy::camera_node`
+    * struct `HandTrackers`: left & right hand trackers
+      * struct `HandPoseState`: if there are hand-trackers, `get_hand_positions()` method will return hand pose states
+  * struct `OpenXRStruct`: poorly named struct, that contains various entities related to XR. Mostly used to bundle all into one `Option<T>`, after `XRDevice` has been initialized. Will be built with `OpenXRStructBuilder`
+    * enum `XRState`: current state of the underlying device (running, paused, etc)
+    * struct `EventDataBufferHolder`: wraps `openxr::EventDataBuffer`, which contains newly produced (hardware?) events (`openxr::Event`) from openxr. App should react to these
+    * struct `wgpu::OpenXRHandles`: container for various OpenXR-related items that are needed on bevy side. Moved from vulkan to bevy (see below)
+    * struct `openxr::Instance`: Instance of openxr device. This instance is also used at gfx/vulkan side
+    * struct `OpenXROptions`: configuration information (view type, trackers, etc.)
+
+* system `openxr_event_system`: transforms `openxr::Event` into bevy events (currently just `XRState` change-events)
+
+## other docs
+
+What needs to happen in render loop:
+* Swapchain & texture rendering
+* Getting controller/hand positions
+* Getting head tracking state
+* etc..
 
 # Initialization
 

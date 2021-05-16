@@ -6,7 +6,18 @@ Proof-of-concept of getting [OpenXR](https://www.khronos.org/openxr/) rendering 
 
 (hand interaction with boxes missing from current commit)
 
-For technical details, see [docs/architecture.md](docs/architecture.md). Tracked pull requests at upstream:
+Targets:
+1. Demonstrate that OpenXR rendering is possible on Rust/GFX-RS/Bevy -ecosystem
+1. Start the discussion with ecosystem participants about proper way to implement OpenXR support for Rust
+1. Eventually have the basic building blocks in an easy-to-use state for building XR apps on top of bevy, or implementing XR support for other rendering engines
+
+
+For technical details, see [docs/architecture.md](docs/architecture.md):
+
+<a href="docs/architecture.md"><img src="docs/screenshot0.png" height="200"></a>
+<a href="docs/architecture.md"><img src="docs/screenshot3.png" height="200"></a><br />
+
+Tracked pull requests at upstream:
 
 * bevy: https://github.com/bevyengine/bevy/pull/2166
 * wgpu-rs: https://github.com/gfx-rs/wgpu-rs/pull/910

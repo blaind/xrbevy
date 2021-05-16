@@ -1,4 +1,10 @@
-# Components
+# OpenXR architecture
+
+See https://www.khronos.org/registry/OpenXR/specs/1.0/html/xrspec.html
+
+![screenshot](screenshot3.png)
+
+# Bevy structure
 
 ![screenshot](screenshot0.png)
 

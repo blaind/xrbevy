@@ -97,3 +97,68 @@ sequenceDiagram
     wgpu_core->>bevy_openxr: OpenXRHandles
 
 ```
+
+# screenshot 3
+
+```mermaid
+graph LR
+    R[RUNTIME]
+    I[xrInstance] --- S[xrSession]
+    S --- SC[xrSwapchain]
+    V[xrView] --- FOV[xrFovf]
+    V --- POSE[xrPosef]
+    R --- ALP[xrApiLayerProperties]
+    EBM[xrEnvironmentBlendMode]
+    SID[xrSystemId]
+    FF[xrFormFactor]
+    SPA[xrSpace]
+    S --- RST[xrReferenceSpaceType]
+    SID --- VCT[xrViewConfigurationType]
+
+    I --- AS[xrActionSet]
+    AS --- A[xrAction]
+    S --- HT[xrHandTrackerEXT]
+    R --- I
+    S --- SPA
+    SID --- FF
+    S --- V
+
+    R --- EP[xrExtensionProperties]
+
+    FEI[xrFrameEndInfo] --- EBM
+    S --- FEI
+
+    A --- P[xrPath]
+    A --- AT[xrActionType]
+
+    I --- VKI[VkInstance]
+
+
+    style R fill:#00ff00,stroke:#000,stroke-width:2px,color:#555
+    style I fill:#ff8800,stroke:#000,stroke-width:2px,color:#fff
+    style S fill:#ff8800,stroke:#000,stroke-width:2px,color:#fff
+    style SC fill:#ff8800,stroke:#000,stroke-width:2px,color:#fff
+
+    style ALP fill:#003300,stroke:#000,stroke-width:2px
+    style EP fill:#003300,stroke:#000,stroke-width:2px
+    style SID fill:#003300,stroke:#000,stroke-width:2px
+    style FF fill:#003300,stroke:#000,stroke-width:2px
+    style VCT fill:#003300,stroke:#000,stroke-width:2px
+    style EBM fill:#003300,stroke:#000,stroke-width:2px
+    style FOV fill:#003300,stroke:#000,stroke-width:2px
+    style POSE fill:#003300,stroke:#000,stroke-width:2px
+    style RST fill:#003300,stroke:#000,stroke-width:2px
+
+
+    style AS fill:#555555,stroke:#fff,stroke-width:2px
+    style A fill:#555555,stroke:#fff,stroke-width:2px
+    style SPA fill:#555555,stroke:#fff,stroke-width:2px
+    style HT fill:#555555,stroke:#fff,stroke-width:2px
+
+    style V fill:#003355,stroke:#000,stroke-width:2px
+    style FEI fill:#003355,stroke:#000,stroke-width:2px
+
+    style VKI fill:#ffff00,stroke:#000,stroke-width:2px,color:#333
+
+```
+

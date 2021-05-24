@@ -5,8 +5,11 @@ authors = ["Mika Vatanen <blaind@blaind.net>"]
 edition = "2018"
 
 [features]
-default = ["use-openxr"]
-use-openxr = ["bevy/use-openxr"]
+default = []
+
+[dependencies]
+bevy_openxr = { path = "./repos/bevy_openxr/crates/bevy_openxr" }
+bevy_openxr_core = { path = "./repos/bevy_openxr/crates/bevy_openxr_core" }
 
 [dependencies.bevy]
 path = "./repos/bevy"
@@ -58,3 +61,9 @@ name = "xr_pc_scene"
 
 [[example]]
 name = "non_xr_scene"
+
+[patch.crates-io]
+bevy = { path = "./repos/bevy" }
+openxr = { path = "./repos/openxrs/openxr" }
+openxr-sys = { path = "./repos/openxrs/sys" }
+wgpu = { path = "./repos/wgpu-rs" }

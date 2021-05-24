@@ -1,4 +1,4 @@
-use bevy::openxr::XRCameraBundle;
+use bevy_openxr::prelude::*;
 use bevy::prelude::*;
 
 pub struct ExampleScenePlugin;
@@ -6,8 +6,10 @@ pub struct ExampleScenePlugin;
 impl Plugin for ExampleScenePlugin {
     fn build(&self, app: &mut AppBuilder) {
         app.insert_resource(Msaa { samples: 2 }) // FIXME openxr crashes if samples > 1
-            .add_plugins_with(DefaultPlugins, bevy::openxr::add_plugins_fn)
-            .add_plugin(bevy::openxr_core::OpenXRCorePlugin)
+            .add_plugin(bevy_openxr::OpenXRPlugin)
+            .add_plugins(DefaultPlugins)
+            .add_plugin(bevy_openxr_core::OpenXRCorePlugin)
+            .add_plugin(bevy_openxr::OpenXRWgpuPlugin)
             .add_startup_system(setup.system());
     }
 }

@@ -1,7 +1,4 @@
-#[cfg(feature = "use-openxr")]
 mod example_scene_plugin;
-
-#[cfg(feature = "use-openxr")]
 pub use example_scene_plugin::*;
 
 use std::sync::atomic::{AtomicBool, Ordering};

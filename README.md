@@ -38,7 +38,7 @@ Tracked pull requests at upstream:
 
 Prequisite installation:
 
-    sudo apt-get install make openjdk-11-jre g++ libudev-dev libasound2-dev gcc
+    sudo apt-get install make openjdk-11-jre g++ libudev-dev libasound2-dev gcc libopenxr-loader1
 
 TODO: document if all are really necessary...
 
@@ -192,3 +192,16 @@ Further reading - some links that have helped in getting this PoC working:
 * https://www.khronos.org/registry/OpenXR/specs/1.0/html/xrspec.html
 * https://github.com/Ralith/openxrs/blob/master/openxr/examples/vulkan.rs
 * https://github.com/GodotVR/godot_openxr
+
+# Troubleshooting
+
+## OpenXR loader not found
+
+```
+Settings: ()
+thread 'main' panicked at 'called `Result::unwrap()` on an `Err` value: XRLoad(DlOpen { desc: "libopenxr_loader.so: cannot open shared object file: No such file or directory" })', repos/bevy_openxr/crates/bevy_openxr/src/platform/mod.rs:44:55
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+```
+
+* On Ubuntu, `apt-get install libopenxr-loader1`
+* On Windows, [todo]

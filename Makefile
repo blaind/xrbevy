@@ -4,16 +4,17 @@ install_cargo_apk:
 
 download_dependencies:
 	mkdir -p repos
-	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs bevy_openxr; \
+	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs; \
 	do \
 		echo "==== $$i =========="; \
 		if [ ! -d "$$i" ]; then \
-			git -C repos clone https://github.com/blaind/$$i.git; \
 			git -C repos/$$i fetch origin; \
 			git -C repos/$$i checkout bevy_openxr; \
 			patch -p1 -d repos/$$i < patches/$$i.patch; \
 		fi; \
 	done;
+	
+	git -C repos clone https://github.com/blaind/bevy_openxr.git
 
 DANGEROUS_revert_changes_and_apply_patches:
 	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs; do \

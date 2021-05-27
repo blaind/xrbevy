@@ -9,6 +9,6 @@ fn main() {
 
     App::build()
         .add_plugin(ExampleScenePlugin)
-        .add_plugin(bevy::openxr::OpenXRHandTrackingPlugin)
+        .add_plugin(bevy_openxr::OpenXRHandTrackingPlugin)
         .run();
 }

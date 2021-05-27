@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Install dependencies
-      run: sudo add-apt-repository ppa:monado-xr/monado && apt-get update && apt-get install make openjdk-11-jre g++ libudev-dev libasound2-dev gcc libopenxr-loader1
+      run: sudo add-apt-repository ppa:monado-xr/monado && sudo apt-get update && sudo apt-get install make openjdk-11-jre g++ libudev-dev libasound2-dev gcc libopenxr-loader1
 
     - uses: actions/checkout@v2
 

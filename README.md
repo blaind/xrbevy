@@ -38,7 +38,13 @@ Tracked pull requests at upstream:
 
 Prequisite installation:
 
-    sudo apt-get install make openjdk-11-jre g++ libudev-dev libasound2-dev gcc libopenxr-loader1
+    sudo apt-get install make openjdk-11-jre g++ libudev-dev libasound2-dev gcc
+
+Also, if you want to run locally on Ubuntu and don't have openxr loader installed, one can be found from Monado repo:
+
+    sudo add-apt-repository ppa:monado-xr/monado
+    sudo apt-get update
+    sudo apt-get install libopenxr-loader1
 
 TODO: document if all are really necessary...
 

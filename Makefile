@@ -4,7 +4,7 @@ install_cargo_apk:
 
 download_dependencies:
 	mkdir -p repos
-	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs; \
+	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs bevy_openxr; \
 	do \
 		echo "==== $$i =========="; \
 		if [ ! -d "$$i" ]; then \
@@ -15,10 +15,22 @@ download_dependencies:
 		fi; \
 	done;
 
-create_diff:
+DANGEROUS_revert_changes_and_apply_patches:
+	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs; do \
+		git -C repos/$$i checkout .; \
+		patch -p1 -d repos/$$i < patches/$$i.patch; \
+	done;
+
+create_diff_to_patches:
 	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs; \
 	do \
 		git -C repos/$$i diff > patches/$$i.patch; \
+	done;
+
+create_diff:
+	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs; \
+	do \
+		git -C repos/$$i diff; \
 	done;
 
 adb_logcat:

@@ -28,10 +28,11 @@ Tracked pull requests at upstream:
 
 # Getting started
 
-Notes:
+**Important - read before**:
 
-1. **This has only been tested on Oculus Quest 2, but should also work on [Monado](https://monado.dev/)**
-2. **These quideline steps below haven't been validated by anyone yet, so expect challenges on the way...**
+1. Windows is not currently supported - support will be released soon
+1. This has only been tested on Oculus Quest 2, but should also work on [Monado](https://monado.dev/) (on Linux)
+1. These quideline steps below haven't been validated by anyone yet, so expect challenges on the way... (e.g. a few hours to get it compiling)
 
 ## Ubuntu packages
 

@@ -8,9 +8,6 @@ Please note that the code with this PoC has not been merged upstream yet. Consid
 
 ## Install
 
-### Oculus Quest 2
-
-See [Oculus installation instructions](./docs/install_oculus.md)
 ### Windows
 
 Tested with Oculus Quest 2 using Oculus Link in Virtual Desktop mode (must be enabled before starting app).
@@ -36,9 +33,7 @@ The loader must also be configured to point into correct runtime. This depends o
 1. Navigate to Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\OpenXR\1
 1. Change ActiveRuntime value to C:\Program Files\oculus\Support\oculus-runtime\oculus_openxr_64.json
 
-### Mac OS
-
-Currently untested. Please make a pull request if you get it working.
+See also [troubleshooting](#troubleshooting)
 
 ### Ubuntu
 
@@ -64,6 +59,16 @@ If you don't already have an openxr loader, the process will complain about miss
     sudo apt-get install libopenxr-loader1
 
 In addition to a loader, you'll need an OpenXR runtime: either virtualized like Monado, or real like **maybe** (untested) SteamVR. For Monado, see https://monado.freedesktop.org/getting-started.html#monado. If you find a way to run with real hardware, please contact author or make a pull request to document the steps here.
+
+See also [troubleshooting](#troubleshooting)
+
+### Mac OS
+
+Currently untested. Please make a pull request if you get it working.
+
+### Oculus Quest 2
+
+See [Oculus installation instructions](./docs/install_oculus.md)
 
 # Background
 

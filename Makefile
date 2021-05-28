@@ -11,26 +11,13 @@ download_dependencies:
 			git -C repos clone https://github.com/blaind/$$i.git; \
 			git -C repos/$$i fetch origin; \
 			git -C repos/$$i checkout bevy_openxr; \
-			patch -p1 -d repos/$$i < patches/$$i.patch; \
 		fi; \
 	done;
 	
 	git -C repos clone https://github.com/blaind/bevy_openxr.git
 
-DANGEROUS_revert_changes_and_apply_patches:
-	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs; do \
-		git -C repos/$$i checkout .; \
-		patch -p1 -d repos/$$i < patches/$$i.patch; \
-	done;
-
-create_diff_to_patches:
-	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs; \
-	do \
-		git -C repos/$$i diff > patches/$$i.patch; \
-	done;
-
-create_diff:
-	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs; \
+diff:
+	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs bevy_openxr; \
 	do \
 		git -C repos/$$i diff; \
 	done;

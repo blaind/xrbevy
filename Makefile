@@ -8,6 +8,7 @@ download_dependencies:
 	do \
 		echo "==== $$i =========="; \
 		if [ ! -d "$$i" ]; then \
+			git -C repos clone https://github.com/blaind/$$i.git; \
 			git -C repos/$$i fetch origin; \
 			git -C repos/$$i checkout bevy_openxr; \
 			patch -p1 -d repos/$$i < patches/$$i.patch; \

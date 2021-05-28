@@ -16,6 +16,15 @@ download_dependencies:
 	
 	git -C repos clone https://github.com/blaind/bevy_openxr.git
 
+update_dependencies:
+	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs; \
+	do \
+		git -C repos/$$i pull; \
+	done;
+	
+	git -C repos/bevy_openxr pull
+	git pull
+
 diff:
 	for i in android-ndk-rs bevy bevy_rapier gfx openxrs wgpu wgpu-rs bevy_openxr; \
 	do \

@@ -12,10 +12,11 @@ Please note that the code with this PoC has not been merged upstream yet. Consid
 
 Tested with Oculus Quest 2 using Oculus Link in Virtual Desktop mode (must be enabled before starting app).
 
-Clone this repository and run [install_dependencies.bat](./install_dependencies.bat) to download required dependencies (patched bevy, wgpu, openxrs crates, etc.):
+Clone this repository and run [install_dependencies.bat](./scripts/install_dependencies.bat) to download required dependencies (patched bevy, wgpu, openxrs crates, etc.):
 
     git clone https://github.com/blaind/xrbevy.git
-    .\install_dependencies.bat
+    cd xrbevy
+    .\scripts\install_dependencies.bat
 
 Run the example scene using [Rust](https://www.rust-lang.org/).
 
@@ -23,17 +24,21 @@ Run the example scene using [Rust](https://www.rust-lang.org/).
 
 If you don't already have an openxr loader, the process will complain about missing `openxr_loader.dll` file. One way to have a loader is to use a Khronos loader:
 
-1. Open https://github.com/KhronosGroup/OpenXR-SDK-Source/releases/
+1. Navigate to https://github.com/KhronosGroup/OpenXR-SDK-Source/releases/
 1. Look for the latest release and a file called `openxr_loader_windows-[version].zip`
-1. Copy a file from zip file location `openxr_loader_windows\x64\bin\openxr_loader.dll` into the `xrbevy` path (or global library load path?).
+1. Copy `openxr_loader_windows\x64\bin\openxr_loader.dll` to `xrbevy` folder (from zip)
 
-The loader must also be configured to point into correct runtime. This depends on your hardware manufacturer. For Oculus, you need to first download [Oculus app](https://www.oculus.com/setup/). Then you must point the Khronos Openxr loader to the Oculus runtime:
+The loader must also be configured to point into correct runtime. For Oculus, first install [Oculus app](https://www.oculus.com/setup/) and change the active runtime through a registry editor:
 
 1. Open regedit as Administrator
 1. Navigate to Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\OpenXR\1
 1. Change ActiveRuntime value to C:\Program Files\oculus\Support\oculus-runtime\oculus_openxr_64.json
 
-See also [troubleshooting](#troubleshooting)
+If errors, see [troubleshooting](#troubleshooting)
+
+In future, to get the latest changes:
+
+    .\scripts\update_dependencies.bat
 
 ### Ubuntu
 
@@ -57,10 +62,18 @@ If you don't already have an openxr loader, the process will complain about miss
     sudo add-apt-repository ppa:monado-xr/monado
     sudo apt-get update
     sudo apt-get install libopenxr-loader1
+    
+If you still get the error after retrying cargo run, try:
+
+    sudo ln -s /usr/lib/x86_64-linux-gnu/libopenxr_loader.so.1 /usr/local/lib/libopenxr_loader.so && sudo ldconfig
 
 In addition to a loader, you'll need an OpenXR runtime: either virtualized like Monado, or real like **maybe** (untested) SteamVR. For Monado, see https://monado.freedesktop.org/getting-started.html#monado. If you find a way to run with real hardware, please contact author or make a pull request to document the steps here.
 
-See also [troubleshooting](#troubleshooting)
+If errors, see [troubleshooting](#troubleshooting)
+
+In future, to get the latest changes:
+
+    make update_dependencies
 
 ### Mac OS
 

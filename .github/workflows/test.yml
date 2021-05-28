@@ -6,7 +6,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  test:
+  test-linux:
     runs-on: ubuntu-latest
 
     steps:
@@ -41,6 +41,42 @@ jobs:
 
     - name: Download dependencies
       run: make download_dependencies
+
+    - name: Run tests
+      run: cargo test
+
+  test-windows:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Cargo registry
+      uses: actions/cache@v2
+      with:
+        path: ~/.cargo/registry
+        key: ${{ matrix.build }}-cargo-registry-${{ hashFiles('**/Cargo.lock') }}
+        restore-keys: |
+          ${{ matrix.build }}-cargo-registry-
+
+    - name: Cache Cargo index
+      uses: actions/cache@v2
+      with:
+        path: ~/.cargo/git
+        key: ${{ matrix.build }}-cargo-index-${{ hashFiles('**/Cargo.lock') }}
+        restore-keys: |
+          ${{ matrix.build }}-cargo-index-
+
+    -  name: Cache Cargo build
+       uses: actions/cache@v2
+       with:
+        path: target
+        key: ${{ matrix.build }}-target-${{ hashFiles('**/Cargo.lock') }}
+        restore-keys: |
+          ${{ matrix.build }}-target-
+
+    - name: Download dependencies
+      run: .\scripts\install_dependencies.bat
 
     - name: Run tests
       run: cargo test

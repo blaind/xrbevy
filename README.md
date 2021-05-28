@@ -99,12 +99,18 @@ For technical details, see [docs/architecture.md](docs/architecture.md):
 <a href="docs/architecture.md"><img src="docs/screenshot0.png" height="200"></a>
 <a href="docs/architecture.md"><img src="docs/screenshot3.png" height="200"></a><br />
 
-Tracked pull requests at upstream:
+Bevy OpenXR plugin:
+
+* bevy_openxr: https://github.com/blaind/bevy_openxr
+
+Tracked core pull requests at upstream. Note that while these are the current changes to make this PoC work, the code in these might not be eventual solution to land into the repositories.
 
 * bevy: https://github.com/bevyengine/bevy/pull/2166
 * wgpu-rs: https://github.com/gfx-rs/wgpu-rs/pull/910
 * wgpu: https://github.com/gfx-rs/wgpu/pull/1387
 * gfx-rs: https://github.com/gfx-rs/gfx/pull/3761
+
+A few miscellanceous / support crates:
 * bevy_rapier: https://github.com/dimforge/bevy_rapier/pull/69 (only required for kinematics in the example)
 * android-ndk-rs: https://github.com/rust-windowing/android-ndk-rs/pull/138 (needed for bundling .so for Oculus Quest 2)
 
@@ -160,6 +166,6 @@ For the pow2 number, take the max/latest number and multiply it by two to get a 
     Error [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Failed to find default runtime with RuntimeInterface::LoadRuntime()
     Error [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Failed querying extension properties
 
-Solution/Linux: Modify /etc/xdg/openxr/1/ files based on your runtime (see Google)
+Solution/Linux: Modify `/etc/xdg/openxr/1/` files based on your runtime (see Google)
 
 Solution/Windows: See the `ActiveRuntime` part of the Windows setup before

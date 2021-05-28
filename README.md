@@ -116,6 +116,10 @@ Further reading - some links that have helped in getting this PoC working:
 * https://github.com/Ralith/openxrs/blob/master/openxr/examples/vulkan.rs
 * https://github.com/GodotVR/godot_openxr
 
+# Community
+
+Check out [Bevy Discord](https://discord.gg/gMUk5Ph) channel `#xr`
+
 # Troubleshooting
 
 ## ERROR_FORM_FACTOR_UNAVAILABLE

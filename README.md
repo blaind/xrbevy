@@ -28,11 +28,13 @@ If you don't already have an openxr loader, the process will complain about miss
 1. Look for the latest release and a file called `openxr_loader_windows-[version].zip`
 1. Copy `openxr_loader_windows\x64\bin\openxr_loader.dll` to `xrbevy` folder (from zip)
 
-The loader must also be configured to point into correct runtime. For Oculus, first install [Oculus app](https://www.oculus.com/setup/) and change the active runtime through a registry editor:
+The loader must also be configured to point into correct runtime. For Oculus, first install [Oculus app](https://www.oculus.com/setup/) and change the active runtime through a registry editor. Open a terminal as administrator, and run:
 
-1. Open regedit as Administrator
-1. Navigate to Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\OpenXR\1
-1. Change ActiveRuntime value to C:\Program Files\oculus\Support\oculus-runtime\oculus_openxr_64.json
+    # Print current values
+    reg query HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\OpenXR\1
+
+    # Modify ActiveRuntime value to Oculus:
+    reg add HKEY_LOCAL_MACHINE\SOFTWARE\Khronos\OpenXR\1 /v ActiveRuntime /d "C:\Program Files\oculus\Support\oculus-runtime\oculus_openxr_64.json"
 
 If errors, see [troubleshooting](#troubleshooting)
 
@@ -51,6 +53,7 @@ Install needed dependencies:
 Clone this repository and run a [Makefile](./Makefile) command to download required dependencies (patched bevy, wgpu, openxrs crates, etc.):
 
     git clone https://github.com/blaind/xrbevy.git
+    cd xrbevy
     make download_dependencies
 
 Run the example scene using [Rust](https://www.rust-lang.org/):
@@ -144,3 +147,15 @@ Solution: some of the extensions is missing from xr code. Please open a new issu
      ^^^ all uppercase                 ^^ format as specific by OpenXR   ^^ pow2
 
 For the pow2 number, take the max/latest number and multiply it by two to get a next value.
+
+## No OpenXR runtime found
+
+    Error [GENERAL |  | OpenXR-Loader] : RuntimeManifestFile::FindManifestFiles - failed to find active runtime file in registry
+    Error [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeInterface::LoadRuntimes - unknown error
+    Error [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeInterface::LoadRuntimes - failed to load a runtime
+    Error [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Failed to find default runtime with RuntimeInterface::LoadRuntime()
+    Error [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Failed querying extension properties
+
+Solution/Linux: Modify /etc/xdg/openxr/1/ files based on your runtime (see Google)
+
+Solution/Windows: See the `ActiveRuntime` part of the Windows setup before

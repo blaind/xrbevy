@@ -1,0 +1,31 @@
+[submodule "repos/android-ndk-rs"]
+	path = repos/android-ndk-rs
+	url = https://github.com/blaind/android-ndk-rs.git
+	branch = bevy_openxr
+[submodule "repos/bevy"]
+	path = repos/bevy
+	url = https://github.com/blaind/bevy.git
+	branch = bevy_openxr
+[submodule "repos/bevy_rapier"]
+	path = repos/bevy_rapier
+	url = https://github.com/blaind/bevy_rapier.git
+	branch = bevy_openxr
+[submodule "repos/gfx"]
+	path = repos/gfx
+	url = https://github.com/blaind/gfx.git
+	branch = bevy_openxr
+[submodule "repos/openxrs"]
+	path = repos/openxrs
+	url = https://github.com/blaind/openxrs.git
+	branch = bevy_openxr
+[submodule "repos/wgpu"]
+	path = repos/wgpu
+	url = https://github.com/blaind/wgpu.git
+	branch = bevy_openxr
+[submodule "repos/wgpu-rs"]
+	path = repos/wgpu-rs
+	url = https://github.com/blaind/wgpu-rs.git
+	branch = bevy_openxr
+[submodule "repos/bevy_openxr"]
+	path = repos/bevy_openxr
+	url = https://github.com/blaind/bevy_openxr.git

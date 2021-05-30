@@ -84,6 +84,8 @@ Currently untested. Please make a pull request if you get it working.
 
 ### Oculus Quest 2
 
+Please note, that currently Quest 2 has a bug after exiting from app - might require restart of the device or reinstall of the app to relaunch.
+
 See [Oculus installation instructions](./docs/install_oculus.md)
 
 # Background

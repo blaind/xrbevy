@@ -44,13 +44,16 @@ fn setup(
     commands.spawn_bundle(XRCameraBundle::default());
 
     commands.spawn_bundle(PbrBundle {
-        mesh: meshes.add(Mesh::from(shape::Cube { size: 0.5 })),
+        mesh: meshes.add(Mesh::from(shape::Cube { size: 0.3 })),
         material: small_uv_material,
-        transform: Transform::from_xyz(0., 1., -1.5),
+        transform: Transform::from_xyz(0., 0.8, -0.7),
         ..Default::default()
     });
 
     let color_material = materials.add(Color::rgb(0.8, 0.7, 0.6).into());
+
+    // for now, do not draw cubes as they slow down
+    return;
 
     for y in -3..3 {
         for x in -3..3 {

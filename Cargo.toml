@@ -67,10 +67,10 @@ actions = ["android.intent.action.MAIN"]
 categories = ["com.oculus.intent.category.VR", "android.intent.category.LAUNCHER"]
 data = []
 
-[[package.metadata.android.permission]]
+[[package.metadata.android.uses_permission]]
 name = "com.oculus.permission.HAND_TRACKING"
 
-[[package.metadata.android.feature]]
+[[package.metadata.android.uses_feature]]
 name = "oculus.software.handtracking"
 required = false
 

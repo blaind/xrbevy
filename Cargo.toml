@@ -36,15 +36,41 @@ ndk-glue = "0.2.1"
 [package.metadata.android]
 apk_label = "Bevy OpenXR wgpu"
 build_targets = ["aarch64-linux-android"]
-min_sdk_version = 16
-target_sdk_version = 29
 assets = "assets"
 libs = "libs"
 
-[[package.metadata.android.permission]]
+[package.metadata.android.sdk]
+min_sdk_version = 16
+target_sdk_version = 29
+
+[[package.metadata.android.application.meta_data]]
+name = "com.samsung.android.vr.application.mode"
+value = "vr_only"
+
+[[package.metadata.android.application.meta_data]]
+name = "com.oculus.supportedDevices"
+value = "quest|quest2"
+
+[package.metadata.android.application.activity]
+theme = "@android:style/Theme.Black.NoTitleBar.Fullscreen"
+config_changes = "density|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|uiMode"
+launch_mode = "singleTask"
+orientation = "landscape"
+resizeable_activity = "false"
+
+[[package.metadata.android.application.activity.meta_data]]
+name = "com.oculus.vr.focusaware"
+value = "true"
+
+[[package.metadata.android.intent_filter]]
+actions = ["android.intent.action.MAIN"]
+categories = ["com.oculus.intent.category.VR", "android.intent.category.LAUNCHER"]
+data = []
+
+[[package.metadata.android.uses_permission]]
 name = "com.oculus.permission.HAND_TRACKING"
 
-[[package.metadata.android.feature]]
+[[package.metadata.android.uses_feature]]
 name = "oculus.software.handtracking"
 required = false
 

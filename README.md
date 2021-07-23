@@ -2,9 +2,9 @@
 
 Proof-of-concept of getting [OpenXR](https://www.khronos.org/openxr/) rendering support for [Bevy](https://github.com/bevyengine/bevy) game engine using [gfx-rs](https://github.com/gfx-rs/gfx/) abstractions.
 
-![Example](docs/screenshot.webp) 
+![Example](docs/screenshot.webp)
 
-Please note that the code with this PoC has not been merged upstream yet. Consider this code as a PoC where you can get things running, but there will be unstability.
+**This approach will not be the final Bevy OpenXR implementation. You can still PoC this, but the underlying XR interaction and userland interaction API's will change - see @zarik5's pull request at https://github.com/bevyengine/bevy/pull/2319 and follow #xr channel at Bevy discord**
 
 ## Install
 
@@ -65,7 +65,7 @@ If you don't already have an openxr loader, the process will complain about miss
     sudo add-apt-repository ppa:monado-xr/monado
     sudo apt-get update
     sudo apt-get install libopenxr-loader1
-    
+
 If you still get the error after retrying cargo run, try:
 
     sudo ln -s /usr/lib/x86_64-linux-gnu/libopenxr_loader.so.1 /usr/local/lib/libopenxr_loader.so && sudo ldconfig
@@ -105,12 +105,12 @@ Bevy OpenXR plugin:
 
 * bevy_openxr: https://github.com/blaind/bevy_openxr
 
-Tracked core pull requests at upstream. Note that while these are the current changes to make this PoC work, the code in these might not be eventual solution to land into the repositories.
+Currently known pull requests for XR integration:
 
-* bevy: https://github.com/bevyengine/bevy/pull/2166
-* wgpu-rs: https://github.com/gfx-rs/wgpu-rs/pull/910
-* wgpu: https://github.com/gfx-rs/wgpu/pull/1387
-* gfx-rs: https://github.com/gfx-rs/gfx/pull/3761
+* bevy: ~~https://github.com/bevyengine/bevy/pull/2166~~ https://github.com/bevyengine/bevy/pull/2319
+* wgpu-rs: ~~https://github.com/gfx-rs/wgpu-rs/pull/910~~ (see wgpu below)
+* wgpu: ~~https://github.com/gfx-rs/wgpu/pull/1387~~ https://github.com/gfx-rs/wgpu/pull/1609
+* gfx-rs: ~~https://github.com/gfx-rs/gfx/pull/3761~~ https://github.com/gfx-rs/gfx/pull/3762
 
 A few miscellanceous / support crates:
 * bevy_rapier: https://github.com/dimforge/bevy_rapier/pull/69 (only required for kinematics in the example)

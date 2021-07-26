@@ -1,4 +1,5 @@
 /target
+/apk_target
 *.sw*
 /repos
 Cargo.lock

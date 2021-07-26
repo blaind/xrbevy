@@ -37,9 +37,7 @@ ndk-glue = "0.2.1"
 apk_label = "Bevy OpenXR wgpu"
 build_targets = ["aarch64-linux-android"]
 assets = "assets"
-libs = "libs"
-
-[package.metadata.android.sdk]
+runtime_libs = "libs"
 min_sdk_version = 16
 target_sdk_version = 29
 
@@ -62,10 +60,9 @@ resizeable_activity = "false"
 name = "com.oculus.vr.focusaware"
 value = "true"
 
-[[package.metadata.android.intent_filter]]
+[[package.metadata.android.application.activity.intent_filter]]
 actions = ["android.intent.action.MAIN"]
 categories = ["com.oculus.intent.category.VR", "android.intent.category.LAUNCHER"]
-data = []
 
 [[package.metadata.android.uses_permission]]
 name = "com.oculus.permission.HAND_TRACKING"

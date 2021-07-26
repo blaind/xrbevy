@@ -5,16 +5,7 @@
 Prequisite installation:
 
     sudo apt-get install make openjdk-11-jre g++ libudev-dev libasound2-dev gcc
-
-Currently a patched version of cargo-apk is required. Install it like this:
-
-**NOTE! THIS WILL REPLACE PREVIOUSLY INSTALLED cargo-apk IN GLOBAL PATH!**
-
-    cargo install --path repos/android-ndk-rs/cargo-apk
-
-or
-
-    install_cargo_apk
+    cargo install cargo-apk
 
 If you have not setup udev yet, copy udev rules for Oculus Quest 2
 
@@ -25,15 +16,13 @@ If you have not setup udev yet, copy udev rules for Oculus Quest 2
 
 ## Oculus OpenXR plugin
 
-You must download `libopenxr_loader.so` from [Oculus OpenXR Mobile SDK](https://developer.oculus.com/downloads/package/oculus-openxr-mobile-sdk/) file. It should be stored to `libs/aarch64-linux-android` folder. It is at path `OpenXR/Libs/Android/arm64-v8a/Release` in the zip file.
+You must download `libopenxr_loader.so` from [Oculus OpenXR Mobile SDK](https://developer.oculus.com/downloads/package/oculus-openxr-mobile-sdk/) file. It should be stored to `libs/arm64-v8a` folder. It is at path `OpenXR/Libs/Android/arm64-v8a/Release` in the zip file.
 
-    $ ls -al libs/aarch64-linux-android/libopenxr_loader.so
-    -rwxrwxr-x 1 user user 10639048 feb  13 14:46 libs/aarch64-linux-android/libopenxr_loader.so
+    $ ls -al libs/arm64-v8a/libopenxr_loader.so
+    -rwxrwxr-x 1 user user 10639048 feb  13 14:46 libs/arm64-v8a/libopenxr_loader.so
 
-    $ file libs/aarch64-linux-android/libopenxr_loader.so
+    $ file libs/arm64-v8a/libopenxr_loader.so
     ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=..., with debug_info, not stripped
-
-
 
 ## Android SDK
 

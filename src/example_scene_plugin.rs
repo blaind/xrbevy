@@ -4,7 +4,7 @@ use bevy::prelude::*;
 pub struct ExampleScenePlugin;
 
 impl Plugin for ExampleScenePlugin {
-    fn build(&self, app: &mut AppBuilder) {
+    fn build(&self, app: &mut App) {
         app.insert_resource(Msaa { samples: 2 }) // FIXME openxr crashes if samples > 1
             .add_plugin(bevy_openxr::OpenXRPlugin)
             .add_plugins(DefaultPlugins)

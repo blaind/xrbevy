@@ -8,7 +8,7 @@ fn main() {
         // will create a new thread, but the process and existing App will be present
         println!("Already running - quit call to main()");
     } else {
-        App::build()
+        App::new()
             .add_plugin(ExampleScenePlugin)
             .add_plugin(bevy_openxr::OpenXRHandTrackingPlugin)
             .run();
